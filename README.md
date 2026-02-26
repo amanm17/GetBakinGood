@@ -98,3 +98,4 @@ Deploy. Your site will be live on a `*.pages.dev` URL.
 
 - These are **starting-point** conversions. Device models vary; check early on your first attempt.
 - For meat/fish, use an instant-read thermometer and follow trusted food-safety guidance.
+# GetBakinGood
