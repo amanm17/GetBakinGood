@@ -1,3 +1,4 @@
+document.documentElement.dataset.theme = 'dark';
 // GetBakinGood — static conversion tool
 const $ = (sel) => document.querySelector(sel);
 
@@ -8,23 +9,6 @@ const state = {
 };
 
 
-function initTheme(){
-  const saved = localStorage.getItem("gbg_theme");
-  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const theme = saved || (prefersDark ? "dark" : "light");
-  document.documentElement.dataset.theme = theme;
-  const btn = $("#themeToggle");
-  if(btn){
-    btn.textContent = theme === "dark" ? "☀️ Light" : "🌙 Dark";
-    btn.addEventListener("click", () => {
-      const cur = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
-      const next = cur === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = next;
-      localStorage.setItem("gbg_theme", next);
-      btn.textContent = next === "dark" ? "☀️ Light" : "🌙 Dark";
-    });
-  }
-}
 
 const FACTORS = {
   containers: [
@@ -242,7 +226,6 @@ function populateSelect(sel, items, { valueKey="value", labelKey="label"}={}){
 }
 
 async function init(){
-  initTheme();
   const [presetsRes, rulesRes] = await Promise.all([
     fetch("data/presets.json"),
     fetch("data/conversion_rules.json"),
@@ -288,3 +271,127 @@ init().catch(err => {
   console.error(err);
   $("#outNotes").textContent = "Failed to load data files. Make sure /data/presets.json and /data/conversion_rules.json exist.";
 });
+
+
+
+/* =========================================================
+   COOKIE SHOWER (DOM-ready)
+========================================================= */
+(function(){
+  function initCookieShower(){
+    const layer = document.getElementById("cookieRainLayer");
+    const btn = document.getElementById("cookieRainBtn");
+    if(!layer || !btn) return;
+
+    let cookies = [];
+    let animating = false;
+    let lastT = 0;
+
+    const rand = (a,b)=> a + Math.random()*(b-a);
+
+    function spawnBatch(){
+      const W = window.innerWidth;
+      const count = Math.max(28, Math.min(70, Math.floor(W/18)));
+
+      for(let i=0;i<count;i++){
+        const s = rand(18, 58) * (Math.random()<0.20 ? 1.35 : 1.0);
+        const x = rand(0, W - s);
+        const y = rand(-220, -20) - i*rand(2,7);
+
+        const el = document.createElement("div");
+        el.className = "cookie";
+        if(Math.random() < 0.38) el.classList.add("dark");
+        if(Math.random() < 0.18) el.classList.add("glaze");
+        layer.appendChild(el);
+
+        cookies.push({
+          el, s, x, y,
+          vx: rand(-160, 160),
+          vy: rand(0, 80),
+          r: rand(-40, 40),
+          vr: rand(-220, 220),
+          a: 1,
+          settleT: 0
+        });
+      }
+
+      if(!animating){
+        animating = true;
+        lastT = performance.now();
+        requestAnimationFrame(tick);
+      }
+    }
+
+    function tick(t){
+      const dt = Math.min(0.033, (t - lastT)/1000);
+      lastT = t;
+
+      const W = window.innerWidth;
+      const H = window.innerHeight;
+
+      const g = 1600;
+      const bounce = 0.34;
+      const air = 0.992;
+      const floorFriction = 0.86;
+
+      for(let i=cookies.length-1;i>=0;i--){
+        const c = cookies[i];
+        const floor = H - c.s - 6;
+
+        c.vy += g * dt;
+        c.vx *= Math.pow(air, dt*60);
+        c.vy *= Math.pow(air, dt*60);
+
+        c.x += c.vx * dt;
+        c.y += c.vy * dt;
+        c.r += c.vr * dt;
+
+        if(c.x < 0){ c.x = 0; c.vx *= -0.55; }
+        if(c.x > W - c.s){ c.x = W - c.s; c.vx *= -0.55; }
+
+        if(c.y >= floor){
+          c.y = floor;
+          if(Math.abs(c.vy) > 120){
+            c.vy = -c.vy * bounce;
+            c.vx = c.vx * floorFriction + rand(-30,30);
+            c.vr *= 0.7;
+          }else{
+            c.settleT += dt;
+            c.vy = rand(20, 60);
+            c.vx *= 0.92;
+            c.a = Math.max(0, 1 - (c.settleT/1.2));
+            if(c.settleT > 1.25){
+              c.el.remove();
+              cookies.splice(i,1);
+              continue;
+            }
+          }
+        }
+
+        c.el.style.setProperty("--s", `${c.s}px`);
+        c.el.style.setProperty("--x", `${c.x}px`);
+        c.el.style.setProperty("--y", `${c.y}px`);
+        c.el.style.setProperty("--r", `${c.r}deg`);
+        c.el.style.setProperty("--a", `${c.a}`);
+      }
+
+      if(cookies.length){
+        requestAnimationFrame(tick);
+      }else{
+        animating = false;
+      }
+    }
+
+    if(!btn.dataset.cookieBound){
+      btn.addEventListener("click", spawnBatch);
+      btn.dataset.cookieBound = "1";
+    }
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", initCookieShower);
+  }else{
+    initCookieShower();
+  }
+})();
+
