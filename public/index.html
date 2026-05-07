@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GetBakinGood</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🍞</div>
+        <div>
+          <h1>GetBakinGood</h1>
+          <p class="subtitle">A simple guide to get baking right, on your very first try.</p>
+        </div>
+      </div>
+      <div class="links">
+        <a class="btn ghost" href="data/GetBakinGood.xlsx" download>Download Excel</a>
+        <a class="btn" href="#tool">Open the tool</a>
+      </div>
+        <div class="actions">
+          <button id="themeToggle" class="chip" type="button" aria-label="Toggle theme">🌗 Theme</button>
+        </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card" id="tool">
+      <div class="card-head">
+        <h2>Conversion tool</h2>
+        <p class="muted">Pick a preset (fast) or convert your own recipe (precise). Always verify once on a new device.</p>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <h3>Inputs</h3>
+
+          <div class="seg" role="radiogroup" aria-label="Workflow">
+            <label class="seg-item">
+              <input type="radio" name="workflow" value="preset" checked />
+              <span>Use a preset</span>
+            </label>
+            <label class="seg-item">
+              <input type="radio" name="workflow" value="convert" />
+              <span>Convert a recipe</span>
+            </label>
+          </div>
+
+          <div class="field">
+            <label for="dish">Dish preset</label>
+            <select id="dish"></select>
+            <p class="hint" id="dishHint"></p>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="targetDevice">Target device</label>
+              <select id="targetDevice"></select>
+            </div>
+            <div class="field">
+              <label for="rack">Rack</label>
+              <select id="rack"></select>
+            </div>
+          </div>
+
+          <details class="advanced">
+            <summary>Advanced factors (quantity, thickness, cookware)</summary>
+
+            <div class="row2">
+              <div class="field">
+                <label for="qty">Quantity multiplier</label>
+                <input id="qty" type="number" min="0.25" max="5" step="0.05" value="1" />
+                <p class="hint">1 = preset batch size. 2 = about double.</p>
+              </div>
+              <div class="field">
+                <label for="thk">Thickness multiplier</label>
+                <input id="thk" type="number" min="0.5" max="3" step="0.05" value="1" />
+                <p class="hint">1 = typical thickness. 1.5 = thicker pieces.</p>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label for="container">Container / cookware</label>
+                <select id="container"></select>
+              </div>
+              <div class="field">
+                <label>&nbsp;</label>
+                <div class="checks">
+                  <label class="check"><input id="frozen" type="checkbox" /> Starting from frozen</label>
+                  <label class="check"><input id="overcrowd" type="checkbox" /> Overcrowded tray/basket</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label for="origDevice">Original device (convert mode)</label>
+                <select id="origDevice"></select>
+              </div>
+              <div class="field">
+                <label for="modeType">Recipe type (convert mode)</label>
+                <select id="modeType"></select>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label for="origTemp">Original temp (°C)</label>
+                <input id="origTemp" type="number" min="80" max="300" step="1" value="180" />
+              </div>
+              <div class="field">
+                <label for="origTime">Original time (min)</label>
+                <input id="origTime" type="number" min="1" max="300" step="1" value="30" />
+              </div>
+            </div>
+
+            <div class="field small">
+              <label for="tuning">Optional tuning</label>
+              <div class="row3">
+                <div>
+                  <span class="mini">Qty exponent</span>
+                  <input id="qtyExp" type="number" min="0.2" max="1" step="0.01" value="0.65" />
+                </div>
+                <div>
+                  <span class="mini">Thickness exponent</span>
+                  <input id="thkExp" type="number" min="0.2" max="1" step="0.01" value="0.50" />
+                </div>
+                <div>
+                  <span class="mini">Frozen factor</span>
+                  <input id="frozenFac" type="number" min="1" max="1.5" step="0.01" value="1.15" />
+                </div>
+              </div>
+              <p class="hint">If your device runs hot/cold, adjust here (then update Excel too if you want them identical).</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="panel">
+          <h3>Recommendation</h3>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="kpi-label">Temp</div>
+              <div class="kpi-val" id="outTemp">—</div>
+              <div class="kpi-sub">°C</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Time</div>
+              <div class="kpi-val" id="outTime">—</div>
+              <div class="kpi-sub">min</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Preheat</div>
+              <div class="kpi-val" id="outPreheat">—</div>
+              <div class="kpi-sub">min</div>
+            </div>
+          </div>
+
+          <div class="note">
+            <div class="note-title">Key notes</div>
+            <div class="note-body" id="outNotes">—</div>
+          </div>
+
+          <div class="card mini">
+            <div class="card-head">
+              <h4>Quick comparison (time by device)</h4>
+              <p class="muted">Same dish/type, same factors — only device changes.</p>
+            </div>
+            <div id="miniChart" class="miniChart" aria-label="Comparison chart"></div>
+          </div>
+
+          <div class="disclaimer">
+            <strong>Reminder:</strong> All results are starting points. Check early on your first try; models vary. For meat/fish, use an instant-read thermometer.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How it works (quick)</h2>
+      <div class="cols">
+        <div>
+          <h3>Device conversions</h3>
+          <p class="muted">Convection/fan and air fryers move hot air aggressively, so they often need lower temperature and/or shorter time.</p>
+          <ul>
+            <li>Convection: typically lower temperature by about 14°C (25°F) and/or reduce time (often up to ~25%).</li>
+            <li>Air fryer: commonly reduce temperature a little and reduce time by about ~20%.</li>
+            <li>Convection microwave (convection mode): similar idea; smaller cavity can cook faster for roasts.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Real‑world factors</h3>
+          <ul>
+            <li><strong>Quantity</strong> scales time non‑linearly (doubling ≠ doubling time).</li>
+            <li><strong>Thickness</strong> matters more than weight for meats/fish.</li>
+            <li><strong>Cookware</strong> affects heat transfer and browning (glass/ceramic vs metal).</li>
+            <li><strong>Airflow</strong>: overcrowding slows cooking in convection/air fryers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>Built to be edited: adjust presets & rules in the Excel file, then export JSON for the site.</p>
+    </footer>
+  </main>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+{
+  "meta": {
+    "name": "GetBakinGood",
+    "version": "1.1",
+    "generated_utc": "2026-05-07T00:00:00Z",
+    "units": {
+      "temp": "C",
+      "time": "min"
+    }
+  },
+  "rules": [
+    {
+      "key": "Oven (Conventional)|BAKE_DELICATE",
+      "device": "Oven (Conventional)",
+      "mode_type": "BAKE_DELICATE",
+      "temp_offset_c": 0,
+      "time_factor": 1,
+      "preheat_min": 12,
+      "notes": "Baseline reference."
+    },
+    {
+      "key": "Oven (Conventional)|BAKE_STANDARD",
+      "device": "Oven (Conventional)",
+      "mode_type": "BAKE_STANDARD",
+      "temp_offset_c": 0,
+      "time_factor": 1,
+      "preheat_min": 12,
+      "notes": "Baseline reference."
+    },
+    {
+      "key": "Oven (Conventional)|ROAST",
+      "device": "Oven (Conventional)",
+      "mode_type": "ROAST",
+      "temp_offset_c": 0,
+      "time_factor": 1,
+      "preheat_min": 12,
+      "notes": "Baseline reference."
+    },
+    {
+      "key": "Oven (Conventional)|GRILL_TOP",
+      "device": "Oven (Conventional)",
+      "mode_type": "GRILL_TOP",
+      "temp_offset_c": 0,
+      "time_factor": 1,
+      "preheat_min": 5,
+      "notes": "Baseline reference."
+    },
+    {
+      "key": "Oven (Conventional)|REHEAT_CRISP",
+      "device": "Oven (Conventional)",
+      "mode_type": "REHEAT_CRISP",
+      "temp_offset_c": 0,
+      "time_factor": 1,
+      "preheat_min": 12,
+      "notes": "Baseline reference."
+    },
+    {
+      "key": "OTG (Conventional)|BAKE_DELICATE",
+      "device": "OTG (Conventional)",
+      "mode_type": "BAKE_DELICATE",
+      "temp_offset_c": 0,
+      "time_factor": 1.05,
+      "preheat_min": 15,
+      "notes": "Smaller cavity; rotate once; may brown faster on top."
+    },
+    {
+      "key": "OTG (Conventional)|BAKE_STANDARD",
+      "device": "OTG (Conventional)",
+      "mode_type": "BAKE_STANDARD",
+      "temp_offset_c": 0,
+      "time_factor": 1.05,
+      "preheat_min": 15,
+      "notes": "Smaller cavity; rotate once; may brown faster on top."
+    },
+    {
+      "key": "OTG (Conventional)|ROAST",
+      "device": "OTG (Conventional)",
+      "mode_type": "ROAST",
+      "temp_offset_c": 0,
+      "time_factor": 1.05,
+      "preheat_min": 15,
+      "notes": "Smaller cavity; rotate once; may brown faster on top."
+    },
+    {
+      "key": "OTG (Conventional)|GRILL_TOP",
+      "device": "OTG (Conventional)",
+      "mode_type": "GRILL_TOP",
+      "temp_offset_c": 0,
+      "time_factor": 1,
+      "preheat_min": 5,
+      "notes": "Smaller cavity; rotate once; may brown faster on top."
+    },
+    {
+      "key": "OTG (Conventional)|REHEAT_CRISP",
+      "device": "OTG (Conventional)",
+      "mode_type": "REHEAT_CRISP",
+      "temp_offset_c": 0,
+      "time_factor": 1,
+      "preheat_min": 15,
+      "notes": "Smaller cavity; rotate once; may brown faster on top."
+    },
+    {
+      "key": "Oven (Convection/Fan)|BAKE_DELICATE",
+      "device": "Oven (Convection/Fan)",
+      "mode_type": "BAKE_DELICATE",
+      "temp_offset_c": -10,
+      "time_factor": 0.9,
+      "preheat_min": 10,
+      "notes": "Lower temp slightly; avoid over-drying; check early."
+    },
+    {
+      "key": "Oven (Convection/Fan)|BAKE_STANDARD",
+      "device": "Oven (Convection/Fan)",
+      "mode_type": "BAKE_STANDARD",
+      "temp_offset_c": -15,
+      "time_factor": 0.85,
+      "preheat_min": 10,
+      "notes": "Rule-of-thumb: lower temp and/or shorten time; check early."
+    },
+    {
+      "key": "Oven (Convection/Fan)|ROAST",
+      "device": "Oven (Convection/Fan)",
+      "mode_type": "ROAST",
+      "temp_offset_c": -15,
+      "time_factor": 0.85,
+      "preheat_min": 10,
+      "notes": "Rule-of-thumb: lower temp and/or shorten time; check early."
+    },
+    {
+      "key": "Oven (Convection/Fan)|GRILL_TOP",
+      "device": "Oven (Convection/Fan)",
+      "mode_type": "GRILL_TOP",
+      "temp_offset_c": 0,
+      "time_factor": 0.85,
+      "preheat_min": 5,
+      "notes": "Use top heat; watch closely."
+    },
+    {
+      "key": "Oven (Convection/Fan)|REHEAT_CRISP",
+      "device": "Oven (Convection/Fan)",
+      "mode_type": "REHEAT_CRISP",
+      "temp_offset_c": -15,
+      "time_factor": 0.85,
+      "preheat_min": 10,
+      "notes": "Rule-of-thumb: lower temp and/or shorten time; check early."
+    },
+    {
+      "key": "OTG (Convection/Fan)|BAKE_DELICATE",
+      "device": "OTG (Convection/Fan)",
+      "mode_type": "BAKE_DELICATE",
+      "temp_offset_c": -10,
+      "time_factor": 0.88,
+      "preheat_min": 12,
+      "notes": "Countertop convection is intense; tent if browning."
+    },
+    {
+      "key": "OTG (Convection/Fan)|BAKE_STANDARD",
+      "device": "OTG (Convection/Fan)",
+      "mode_type": "BAKE_STANDARD",
+      "temp_offset_c": -15,
+      "time_factor": 0.82,
+      "preheat_min": 12,
+      "notes": "Faster than oven convection due to small cavity; check early."
+    },
+    {
+      "key": "OTG (Convection/Fan)|ROAST",
+      "device": "OTG (Convection/Fan)",
+      "mode_type": "ROAST",
+      "temp_offset_c": -15,
+      "time_factor": 0.82,
+      "preheat_min": 12,
+      "notes": "Faster than oven convection due to small cavity; check early."
+    },
+    {
+      "key": "OTG (Convection/Fan)|GRILL_TOP",
+      "device": "OTG (Convection/Fan)",
+      "mode_type": "GRILL_TOP",
+      "temp_offset_c": 0,
+      "time_factor": 0.8,
+      "preheat_min": 5,
+      "notes": "Top element is close; watch closely."
+    },
+    {
+      "key": "OTG (Convection/Fan)|REHEAT_CRISP",
+      "device": "OTG (Convection/Fan)",
+      "mode_type": "REHEAT_CRISP",
+      "temp_offset_c": -15,
+      "time_factor": 0.82,
+      "preheat_min": 12,
+      "notes": "Faster than oven convection due to small cavity; check early."
+    },
+    {
+      "key": "Convection Microwave (Convection mode)|BAKE_DELICATE",
+      "device": "Convection Microwave (Convection mode)",
+      "mode_type": "BAKE_DELICATE",
+      "temp_offset_c": -10,
+      "time_factor": 0.95,
+      "preheat_min": 8,
+      "notes": "Often keep bake time similar; use low fan if available."
+    },
+    {
+      "key": "Convection Microwave (Convection mode)|BAKE_STANDARD",
+      "device": "Convection Microwave (Convection mode)",
+      "mode_type": "BAKE_STANDARD",
+      "temp_offset_c": -15,
+      "time_factor": 0.88,
+      "preheat_min": 8,
+      "notes": "Smaller cavity; check 5\u201310 min early for long bakes."
+    },
+    {
+      "key": "Convection Microwave (Convection mode)|ROAST",
+      "device": "Convection Microwave (Convection mode)",
+      "mode_type": "ROAST",
+      "temp_offset_c": -15,
+      "time_factor": 0.8,
+      "preheat_min": 8,
+      "notes": "Roasts can cook 20%+ faster; use thermometer."
+    },
+    {
+      "key": "Convection Microwave (Convection mode)|GRILL_TOP",
+      "device": "Convection Microwave (Convection mode)",
+      "mode_type": "GRILL_TOP",
+      "temp_offset_c": 0,
+      "time_factor": 0.75,
+      "preheat_min": 5,
+      "notes": "Use grill element to brown; short bursts."
+    },
+    {
+      "key": "Convection Microwave (Convection mode)|REHEAT_CRISP",
+      "device": "Convection Microwave (Convection mode)",
+      "mode_type": "REHEAT_CRISP",
+      "temp_offset_c": -10,
+      "time_factor": 0.8,
+      "preheat_min": 5,
+      "notes": "Best for crisping small portions; watch closely."
+    },
+    {
+      "key": "Air Fryer (Basket)|BAKE_DELICATE",
+      "device": "Air Fryer (Basket)",
+      "mode_type": "BAKE_DELICATE",
+      "temp_offset_c": -10,
+      "time_factor": 0.9,
+      "preheat_min": 3,
+      "notes": "Use small pan/ramekin; avoid tall cakes; cover top if browning."
+    },
+    {
+      "key": "Air Fryer (Basket)|BAKE_STANDARD",
+      "device": "Air Fryer (Basket)",
+      "mode_type": "BAKE_STANDARD",
+      "temp_offset_c": -10,
+      "time_factor": 0.8,
+      "preheat_min": 3,
+      "notes": "Typical conversion: slightly lower temp, ~20% less time; check early."
+    },
+    {
+      "key": "Air Fryer (Basket)|ROAST",
+      "device": "Air Fryer (Basket)",
+      "mode_type": "ROAST",
+      "temp_offset_c": -10,
+      "time_factor": 0.75,
+      "preheat_min": 3,
+      "notes": "Starting point: ~20\u201330% less time; start checking early; single layer."
+    },
+    {
+      "key": "Air Fryer (Basket)|GRILL_TOP",
+      "device": "Air Fryer (Basket)",
+      "mode_type": "GRILL_TOP",
+      "temp_offset_c": -10,
+      "time_factor": 0.7,
+      "preheat_min": 3,
+      "notes": "Great for tikka/kebabs; start checking early; flip/turn for even char."
+    },
+    {
+      "key": "Air Fryer (Basket)|REHEAT_CRISP",
+      "device": "Air Fryer (Basket)",
+      "mode_type": "REHEAT_CRISP",
+      "temp_offset_c": -10,
+      "time_factor": 0.7,
+      "preheat_min": 3,
+      "notes": "Reheat/crisp: short bursts; shake/flip."
+    },
+    {
+      "key": "Air Fryer (Oven-style)|BAKE_DELICATE",
+      "device": "Air Fryer (Oven-style)",
+      "mode_type": "BAKE_DELICATE",
+      "temp_offset_c": -10,
+      "time_factor": 0.92,
+      "preheat_min": 4,
+      "notes": "Use middle rack; cover top if browning."
+    },
+    {
+      "key": "Air Fryer (Oven-style)|BAKE_STANDARD",
+      "device": "Air Fryer (Oven-style)",
+      "mode_type": "BAKE_STANDARD",
+      "temp_offset_c": -10,
+      "time_factor": 0.82,
+      "preheat_min": 4,
+      "notes": "Slightly slower than basket; still faster than oven."
+    },
+    {
+      "key": "Air Fryer (Oven-style)|ROAST",
+      "device": "Air Fryer (Oven-style)",
+      "mode_type": "ROAST",
+      "temp_offset_c": -10,
+      "time_factor": 0.78,
+      "preheat_min": 4,
+      "notes": "Oven-style AF is closer to a small convection oven; check 20% early."
+    },
+    {
+      "key": "Air Fryer (Oven-style)|GRILL_TOP",
+      "device": "Air Fryer (Oven-style)",
+      "mode_type": "GRILL_TOP",
+      "temp_offset_c": -10,
+      "time_factor": 0.72,
+      "preheat_min": 4,
+      "notes": "Use top rack for browning; watch closely."
+    },
+    {
+      "key": "Air Fryer (Oven-style)|REHEAT_CRISP",
+      "device": "Air Fryer (Oven-style)",
+      "mode_type": "REHEAT_CRISP",
+      "temp_offset_c": -10,
+      "time_factor": 0.78,
+      "preheat_min": 4,
+      "notes": "Airflow still strong; rotate trays if needed."
+    }
+  ]
+}
