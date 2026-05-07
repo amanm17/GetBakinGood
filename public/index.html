@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-extra-chips="1">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,8 +22,8 @@
         <a class="btn" href="#tool">Open the tool</a>
       </div>
         <div class="actions">
-          <button id="themeToggle" class="chip" type="button" aria-label="Toggle theme">🌗 Theme</button>
-        </div>
+        <button id="cookieRainBtn" class="cookie-rain-btn" type="button">🍪 Cookie shower</button>
+          </div>
     </div>
   </header>
 
@@ -210,5 +210,7 @@
   </main>
 
   <script src="app.js" type="module"></script>
+  <div id="cookieRainLayer" aria-hidden="true"></div>
+  <div id="chipsLayer" aria-hidden="true"></div>
 </body>
 </html>
